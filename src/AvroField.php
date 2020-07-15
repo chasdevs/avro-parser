@@ -2,8 +2,6 @@
 
 namespace AvroParser;
 
-use AvroToPhp\Util\Utils;
-
 class AvroField {
 
     /** @var string */

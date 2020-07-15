@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 use function PHPUnit\Framework\assertNull;
 
-final class AvroTest extends TestCase
+final class TestAvroTypeFactory extends TestCase
 {
 
     private const AVSC = <<<AVSC
@@ -29,18 +29,29 @@ final class AvroTest extends TestCase
     }, {
         "name" : "nullableFlavor",
         "type" : [ "null", "records.nested.Flavor" ]
-    } ]
+    }, {
+        "name" : "defaultFlavor",
+        "type" : "records.nested.Flavor",
+        "default" : "VANILLA"
+    }]
 }
 AVSC;
 
     public function testX(): void
     {
         $avsc = json_decode(self::AVSC);
+
+        /** @var AvroRecord $record */
         $record = AvroTypeFactory::create($avsc, "asdf");
         $this->assertNotNull($record);
         $this->assertEquals(['Hyperspace\RecordWithEnum'], $record->getImports());
         $this->assertEquals(AvroType::RECORD(), $record->getType());
         $this->assertEquals('RecordWithEnum', $record->getPhpDocType());
         $this->assertEquals('RecordWithEnum', $record->getPhpType());
+
+        $field = $record->fields[3];
+        $this->assertEquals("defaultFlavor", $field->name);
+        $this->assertEquals(AvroType::ENUM(), $field->type->getType());
+        $this->assertEquals('"VANILLA"', $field->phpDefault);
     }
 }

@@ -2,11 +2,6 @@
 
 namespace AvroParser;
 
-use AvroToPhp\Util\Utils;
-use MyCLabs\Enum\Enum;
-use ReflectionClass;
-use Tests\Expected\BaseRecord;
-
 class AvroRecord implements AvroTypeInterface, AvroNameInterface
 {
 
@@ -111,7 +106,6 @@ class AvroRecord implements AvroTypeInterface, AvroNameInterface
     public function decode($data, ?string $namespace = '')
     {
         $class = $this->getQualifiedPhpType($namespace);
-        /** @var BaseRecord */
         $record = new $class;
         $record->decode($data);
         return $record;

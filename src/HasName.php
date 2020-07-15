@@ -4,8 +4,6 @@
 namespace AvroParser;
 
 
-use AvroToPhp\Util\Utils;
-
 trait HasName
 {
 

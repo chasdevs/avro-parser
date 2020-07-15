@@ -1,0 +1,4 @@
+vendor
+.idea
+xdebug.log
+.phpunit.result.cache

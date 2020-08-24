@@ -37,7 +37,7 @@ final class TestAvroTypeFactory extends TestCase
 }
 AVSC;
 
-    public function testX(): void
+    public function testRecordParse(): void
     {
         $avsc = json_decode(self::AVSC);
 

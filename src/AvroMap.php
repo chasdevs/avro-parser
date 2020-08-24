@@ -40,9 +40,11 @@ class AvroMap implements AvroTypeInterface
 
     public function decode($data, ?string $namespace = '')
     {
-        return collect($data)->mapWithKeys(function($value, $key) use ($namespace) {
-            return [$key => $this->values->decode($value, $namespace)];
-        })->all();
+        $map = [];
+        foreach ($data as $key => $value) {
+            $map[$key] = $this->values->decode($value, $namespace);
+        }
+        return $map;
     }
 
 }

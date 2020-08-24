@@ -57,7 +57,7 @@ class AvroUnion implements AvroTypeInterface
 
         // return the first non-null type
         foreach($this->types as $type) {
-           if (!$type->getType()->is(AvroType::NULL())) {
+           if (!is_null($data) && !$type->getType()->is(AvroType::NULL())) {
                return $type->decode($data, $namespace);
            }
         }

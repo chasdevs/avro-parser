@@ -41,8 +41,8 @@ class AvroArray implements AvroTypeInterface
 
     public function decode($data, ?string $namespace = '')
     {
-        return collect($data)->map(function($item) {
-            return $this->items->decode($item);
+        return collect($data)->map(function($item) use ($namespace) {
+            return $this->items->decode($item, $namespace);
         });
     }
 

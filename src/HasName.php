@@ -1,8 +1,6 @@
 <?php
 
-
 namespace AvroParser;
-
 
 trait HasName
 {
@@ -26,7 +24,7 @@ trait HasName
     }
 
     protected function configurePhpNamespace() {
-        $parts = preg_split('/\./', $this->namespace);
+        $parts = preg_split('/\./', $this->namespace ?? '');
         $newParts = array_map(function (string $p) {
             return ucfirst($p);
         }, $parts);

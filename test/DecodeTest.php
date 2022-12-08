@@ -5,7 +5,7 @@ use AvroParser\AvroType;
 use AvroParser\AvroUnion;
 use PHPUnit\Framework\TestCase;
 
-final class TestDecode extends TestCase
+final class DecodeTest extends TestCase
 {
     public function testDecodeNullUnion(): void
     {

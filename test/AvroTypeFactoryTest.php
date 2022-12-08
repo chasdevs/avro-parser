@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 use function PHPUnit\Framework\assertNull;
 
-final class TestAvroTypeFactory extends TestCase
+final class AvroTypeFactoryTest extends TestCase
 {
 
     private const AVSC = <<<AVSC
